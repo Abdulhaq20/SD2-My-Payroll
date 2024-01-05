@@ -34,3 +34,6 @@ tool to keep track of their work-related data. This project proposal outlines ou
 valuable application.
 
 More to come
+
+
+link to the deployed landing page   https://joshkhama.github.io/My_Payroll_App/
