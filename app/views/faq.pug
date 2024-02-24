@@ -1,0 +1,86 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    script(src="https://kit.fontawesome.com/d59cb5743b.js", crossorigin="anonymous")
+    link(rel="stylesheet", href="dashboard.css")
+    title Mypayroll Dashboard
+  body
+    .sidebar
+      .logo
+      ul.menu
+        li
+          a(href="/dashboard")
+            i.fas.fa-tachometer-alt
+            span Dashboard
+        li
+          a(href="profile")
+            i.fas.fa-user
+            span Profile
+        //- li
+        //-   a(href="#")
+        //-     i.fas.fa-chart-bar
+        //-     span Statistics
+        //- li
+        //-   a(href="#")
+        //-     i.fas.fa-briefcase
+        //-     span Careers
+        li.active
+          a(href="/faq")
+            i.fas.fa-question-circle
+            span FAQ
+        //- li
+        //-   a(href="#")
+        //-     i.fas.fa-star
+        //-     span Testimonials
+        //- li
+        //-   a(href="#")
+        //-     i.fas.fa-cog
+        //-     span Settings
+        li.logout
+          a(href="/")
+            i.fas.fa-sign-out-alt
+            span Logout
+    .main--content
+      .header--wrapper
+        .header--title
+          h2 FAQ
+          a(href="/all_faq", class="create-button")
+            i.fas.fa-plus
+            span All FAQ's
+        //- .user--info
+        //- //-   .searh--box
+        //- //-     i.fas.fa-search
+        //- //-       input(type="text", placeholder="Search")
+          img(src="img/571d8bfd-a08c-41a7-a5ab-639ce3ad85b8.webp", alt="")
+      .card--container
+        form(action="/submit_question", method="post")
+          if successMessage
+            h1.success= successMessage
+          if errorMessage
+            h1.error= errorMessage
+          label(for="fullName") Title
+          input(type="text", id="fullName", name="fullName", required)
+
+          label(for="firstName") First Name
+          input(type="text", id="firstName", name="firstName", required)
+
+          label(for="lastName") Last Name
+          input(type="text", id="lastName", name="lastName", required)
+
+          label(for="email") E-mail*
+          input(type="email", id="email", name="email", placeholder="ex: myname@example.com", required)
+
+          label(for="severity") Severity of Your question.*
+          select(id="severity", name="severity", required)
+            option(value="" disabled selected) Please Select
+            option(value="low") Low
+            option(value="medium") Medium
+            option(value="high") High
+
+          label(for="question") Question*
+          textarea(id="question", name="question", rows="4", required)
+
+          button(type="submit") Submit

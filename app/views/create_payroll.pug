@@ -1,0 +1,80 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    script(src="https://kit.fontawesome.com/d59cb5743b.js", crossorigin="anonymous")
+    link(rel="stylesheet", href="dashboard.css")
+    title Mypayroll Dashboard
+  body
+    .sidebar
+      .logo
+      ul.menu
+        li.active
+          a(href="/dashboard")
+            i.fas.fa-tachometer-alt
+            span Dashboard
+        li
+          a(href="profile")
+            i.fas.fa-user
+            span Profile
+        //- li
+        //-   a(href="#")
+        //-     i.fas.fa-chart-bar
+        //-     span Statistics
+        //- li
+        //-   a(href="#")
+        //-     i.fas.fa-briefcase
+        //-     span Careers
+        li
+          a(href="/faq")
+            i.fas.fa-question-circle
+            span FAQ
+        //- li
+        //-   a(href="#")
+        //-     i.fas.fa-star
+        //-     span Testimonials
+        //- li
+        //-   a(href="#")
+        //-     i.fas.fa-cog
+        //-     span Settings
+        li.logout
+          a(href="/")
+            i.fas.fa-sign-out-alt
+            span Logout
+    .main--content
+      .header--wrapper
+        .header--title
+          h2 Create Payroll
+        //- .user--info
+        //- //-   .searh--box
+        //- //-     i.fas.fa-search
+        //- //-       input(type="text", placeholder="Search")
+          img(src="img/571d8bfd-a08c-41a7-a5ab-639ce3ad85b8.webp", alt="")
+      .card--container
+        form(action="/create-payroll", method="post")
+          if successMessage
+            h1.success= successMessage
+          if errorMessage
+            h1.error= errorMessage
+          label(for="selecteddate") Date*
+          input(type="date", id="selecteddate", name="selecteddate", required)
+
+          label(for="jobtype") Job Type*
+          input(type="text", id="jobtype", name="jobtype", required)
+
+          label(for="description") Description*
+          input(type="text", id="description", name="description", required)
+
+          label(for="category") Category*
+          input(type="text", id="category", name="category", required)
+
+          label(for="Amount") Amount*
+          input(type="text", id="Amount", name="Amount", required)
+          label(for="payrollstatus") Status*
+          select(id="payrollstatus", name="payrollstatus", required)
+            option(value="Completed") Completed
+            option(value="Incompleted") Incompleted
+
+          button(type="submit") Submit

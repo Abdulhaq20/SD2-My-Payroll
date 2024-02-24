@@ -1,4 +1,139 @@
-extends layout
-block content
-    h1 Welcome to my Dashboard
-    p this is my dashboard
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    script(src="https://kit.fontawesome.com/d59cb5743b.js", crossorigin="anonymous")
+    link(rel="stylesheet", href="dashboard.css")
+    title Mypayroll Dashboard
+  body
+    .sidebar
+      .logo
+      ul.menu
+        li.active
+          a(href="dashboard")
+            i.fas.fa-tachometer-alt
+            span Dashboard
+        li
+          a(href="/profile")
+            i.fas.fa-user
+            span Profile
+        //- li
+        //-   a(href="#")
+        //-     i.fas.fa-chart-bar
+        //-     span Statistics
+        //- li
+        //-   a(href="#")
+        //-     i.fas.fa-briefcase
+        //-     span Careers
+        li
+          a(href="/faq")
+            i.fas.fa-question-circle
+            span FAQ
+        //- li
+        //-   a(href="#")
+        //-     i.fas.fa-star
+        //-     span Testimonials
+        //- li
+        //-   a(href="#")
+        //-     i.fas.fa-cog
+        //-     span Settings
+        li.logout
+          a(href="/")
+            i.fas.fa-sign-out-alt
+            span Logout
+    .main--content
+      .header--wrapper
+        .header--title
+          h2 Dashboard
+      .card--container
+        h3.main--title Hours Data
+        .card--wrapper
+          // Today Card
+          .payment--card.light-red
+            .card--header
+              .amount
+                span.title Today
+                span.amount--value #{today} £
+              i.fas.fa-pound-sign.icon
+
+          // Month Card
+          .payment--card.light-purple
+            .card--header
+              .amount
+                span.title Month
+                span.amount--value #{monthly} £
+              i.fas.fa-list.icon.dark-purple
+
+          // Year Card
+          .payment--card.light-blue
+            .card--header
+              .amount
+                span.title Year
+                span.amount--value #{yearly} £
+              i.fas.fa-users.icon.dark-blue
+
+          // Total Hours Card
+          .payment--card.light-green
+            .card--header
+              .amount
+                span.title Total Hours
+                span.amount--value #{total} £
+              i.fas.fa-check.icon.dark-green
+      .tabular--wrapper
+        h3.main--title Payroll records
+        a(href="/create_payroll", class="create-button")
+          i.fas.fa-plus
+          span Create
+        input#searchBox(type="text", placeholder="Search by Status or Job Type")
+      .table-container
+        table
+          thead
+            tr
+              th Date
+              th Job type
+              th Description
+              th Amount
+              th Category
+              th Status
+              th Action
+              
+
+          tbody
+            if payrollRecords && payrollRecords.length
+              each record in payrollRecords
+                tr
+                  td= record.selecteddate
+                  td= record.jobtype
+                  td= record.description
+                  td= record.Amount
+                  td= record.category
+                  td= record.payrollstatus
+                  td
+                    form(method='POST' action=`/delete_payroll/${record.WorkdayId}` style="display: inline;")
+                      button(type='submit') Delete
+
+          tfoot
+            tr
+              td(colspan="7") Total: #{payrollRecords.length} records
+
+    // JavaScript to handle search functionality
+    script.
+      const searchBox = document.getElementById('searchBox');
+      const tableRows = document.querySelectorAll('.table-container tbody tr');
+
+      searchBox.addEventListener('input', () => {
+        const searchTerm = searchBox.value.toLowerCase();
+
+        tableRows.forEach((row) => {
+          const jobtype = row.querySelector('td:nth-child(2)').textContent.toLowerCase(); // Updated position for jobtype
+          const payrollstatus = row.querySelector('td:nth-child(6)').textContent.toLowerCase(); // Updated position for payrollstatus
+
+          if (payrollstatus.includes(searchTerm) || jobtype.includes(searchTerm)) {
+            row.style.display = '';
+          } else {
+            row.style.display = 'none';
+          }
+        });
+      });

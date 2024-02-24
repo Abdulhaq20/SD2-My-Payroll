@@ -1,0 +1,42 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    link(rel="stylesheet", href="register.css")
+    title Free Trial Registration
+  body
+    .container
+      h1 Free Trial Registration
+      p It is quick and simple to get started. All we need is a valid email address and a password of your choice.
+
+      form(action='/set-password' method='POST')
+        if successMessage
+          p.success= successMessage
+        if errorMessage
+          p.error= errorMessage
+        label(for="email") Your Email Address
+        input(type="email", id="email", name="email", required)
+
+        label(for="password") Choose a Password (at least 8 characters)
+        input(type="password", id="password", name="password", minlength="8", required)
+
+        //- label(for="confirmPassword") Re-type Password
+        //- input(type="password", id="confirmPassword", name="confirmPassword", minlength="8", required)
+
+        //- label(for="businessName") Business Name
+        //- input(type="text", id="businessName", name="businessName", required)
+
+        //- label(for="forename") Forename
+        //- input(type="text", id="forename", name="forename", required)
+
+        //- label(for="surname") Surname
+        //- input(type="text", id="surname", name="surname", required)
+
+        //- label(for="contactNumber") Contact Telephone Number
+        //- input(type="tel", id="contactNumber", name="contactNumber", required)
+
+        button(type="submit") Register
+      p Already have an account? 
+        a(href="/login") Login

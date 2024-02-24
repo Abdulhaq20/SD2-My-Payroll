@@ -1,0 +1,36 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    script(src="https://kit.fontawesome.com/d59cb5743b.js", crossorigin="anonymous")
+    link(rel="stylesheet", href="dashboard.css")
+    title Mypayroll Dashboard
+  body
+    .sidebar
+      .logo
+        ul.menu
+          li
+            a(href="/dashboard")
+              i.fas.fa-tachometer-alt
+              span Dashboard
+          li
+            a(href="profile")
+              i.fas.fa-user
+              span Profile
+          li.active
+            a(href="/faq")
+              i.fas.fa-question-circle
+              span FAQ
+          li.logout
+            a(href="/")
+              i.fas.fa-sign-out-alt
+              span Logout
+    .main--content
+      .card--container
+        if successMessage
+          h1.success= successMessage
+        if errorMessage
+          h1.error= errorMessage
+          

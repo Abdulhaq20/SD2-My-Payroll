@@ -1,0 +1,67 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    script(src="https://kit.fontawesome.com/d59cb5743b.js", crossorigin="anonymous")
+    link(rel="stylesheet", href="dashboard.css")
+    title Mypayroll Dashboard
+  body
+    .sidebar
+      .logo
+      ul.menu
+        li
+          a(href="/dashboard")
+            i.fas.fa-tachometer-alt
+            span Dashboard
+        li.active
+          a(href="/profile")
+            i.fas.fa-user
+            span Profile
+        //- li
+        //-   a(href="#")
+        //-     i.fas.fa-chart-bar
+        //-     span Statistics
+        //- li
+        //-   a(href="#")
+        //-     i.fas.fa-briefcase
+        //-     span Careers
+        li
+          a(href="/faq")
+            i.fas.fa-question-circle
+            span FAQ
+        //- li
+        //-   a(href="#")
+        //-     i.fas.fa-star
+        //-     span Testimonials
+        //- li
+        //-   a(href="#")
+        //-     i.fas.fa-cog
+        //-     span Settings
+        li.logout
+          a(href="/")
+            i.fas.fa-sign-out-alt
+            span Logout
+    .main--content
+      .header--wrapper
+        .header--title
+          h2 Profile
+        //- .user--info
+        //-   .searh--box
+        //-     i.fas.fa-search
+        //-       input(type="text", placeholder="Search")
+        //-   img(src="img/571d8bfd-a08c-41a7-a5ab-639ce3ad85b8.webp", alt="")
+      .card--container
+        .profile-details
+          .profile-info
+            h3 Personal Information
+            p Full Name: John Doe
+            p Date of Birth: January 1, 1990
+            p Address: 123 Main Street, Cityville
+
+          .profile-stats
+            h3 Employment Information
+            p Employee ID: 123456
+            p Department: IT
+            p Position: Software Developer

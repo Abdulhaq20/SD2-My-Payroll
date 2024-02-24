@@ -1,0 +1,95 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    script(src="https://kit.fontawesome.com/d59cb5743b.js", crossorigin="anonymous")
+    link(rel="stylesheet", href="dashboard.css")
+    title Mypayroll Dashboard
+  body
+    .sidebar
+      .logo
+      ul.menu
+        li
+          a(href="dashboard")
+            i.fas.fa-tachometer-alt
+            span Dashboard
+        li
+          a(href="/profile")
+            i.fas.fa-user
+            span Profile
+        //- li
+        //-   a(href="#")
+        //-     i.fas.fa-chart-bar
+        //-     span Statistics
+        //- li
+        //-   a(href="#")
+        //-     i.fas.fa-briefcase
+        //-     span Careers
+        li.active
+          a(href="/faq")
+            i.fas.fa-question-circle
+            span FAQ
+        //- li
+        //-   a(href="#")
+        //-     i.fas.fa-star
+        //-     span Testimonials
+        //- li
+        //-   a(href="#")
+        //-     i.fas.fa-cog
+        //-     span Settings
+        li.logout
+          a(href="/")
+            i.fas.fa-sign-out-alt
+            span Logout
+    .main--content
+      .header--wrapper
+        .header--title
+          h2 All FAQ's
+      .tabular--wrapper
+        h3.main--title All FAQ's Records
+      .table-container
+        table
+          thead
+            tr
+              th ID
+              th Title
+              th First Name 
+              th Last Name
+              th Email
+              th Severity
+
+          tbody
+            if faqRecords && faqRecords.length
+              each record in faqRecords
+                tr
+                  td= record.id
+                  td= record.fullName
+                  td= record.firstName
+                  td= record.lastName
+                  td= record.email
+                  td= record.severity
+          tfoot
+            tr
+              td(colspan="7") Total: #{faqRecords.length} records
+
+    // JavaScript to handle search functionality
+    script.
+      const searchBox = document.getElementById('searchBox');
+      const tableRows = document.querySelectorAll('.table-container tbody tr');
+
+      searchBox.addEventListener('input', () => {
+        const searchTerm = searchBox.value.toLowerCase();
+
+        tableRows.forEach((row) => {
+          const location = row.querySelector('td:nth-child(5)').textContent.toLowerCase();
+          const company = row.querySelector('td:nth-child(6)').textContent.toLowerCase();
+
+          if (location.includes(searchTerm) || company.includes(searchTerm)) {
+            row.style.display = '';
+          } else {
+            row.style.display = 'none';
+          }
+        });
+      });
