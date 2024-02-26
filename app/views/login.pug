@@ -10,7 +10,11 @@ html(lang="en")
     .container
       h1 Login
       form(action='/authenticate' method='POST')
-        p(style='color: red;') #{errorMessage || ''}
+        if successMessage
+          p.success= successMessage
+        if errorMessage
+          p.error= errorMessage
+        //- p(style='color: red;') #{errorMessage || ''}
         label(for="email") Your Email Address
         input(type="email", id="email", name="email", required)
 
